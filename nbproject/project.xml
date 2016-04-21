@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.web.clientproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/clientside-project/1">
-            <name>DarshanVis-UI</name>
+            <name>DarshanVis-API</name>
         </data>
     </configuration>
 </project>
