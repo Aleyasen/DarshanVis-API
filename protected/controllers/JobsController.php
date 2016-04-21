@@ -5,6 +5,8 @@ require_once Yii::app()->basePath . '/views/jobs/preprocess.php';
 
 class JobsController extends GxController {
 
+    private $format = 'json';
+
     public function actionView($id) {
         $this->render('view', array(
             'model' => $this->loadModel($id, 'Jobs'),
@@ -23,71 +25,77 @@ class JobsController extends GxController {
     }
 
     public function actionFilter() {
-        if (!YII_DEBUG && !Yii::app()->request->isAjaxRequest) {
-            throw new CHttpException('403', 'Forbidden access.');
-        }
+//        if (!YII_DEBUG && !Yii::app()->request->isAjaxRequest) {
+//            throw new CHttpException('403', 'Forbidden access.');
+//        }
+        $post = file_get_contents("php://input");
+
+        //decode json post input as php array:
+        $data = CJSON::decode($post, true);
+        
         $result = array();
-        $url = $_POST["url"];
-        $pos = strrpos($url, "?");
-        $chartId = substr($url, $pos + 3);
+        $chartId = $data["chart"];
+        $url = $data["url"];
+//        $pos = strrpos($url, "?");
+//        $chartId = substr($url, $pos + 3);
 //        echo $chartId;
         $chart = getChartInfo($chartId);
         $result["msg"] = "successful";
         $result["chart"] = $chart;
         $q = $chart["query"];
 
-        if (isset($_POST["start_date"]) && strlen($_POST["start_date"]) > 0) {
-            $q = Jobs::filter($q, "start_time", $_POST["start_date"], ">");
+        if (isset($data["start_date"]) && strlen($data["start_date"]) > 0) {
+            $q = Jobs::filter($q, "start_time", $data["start_date"], ">");
         }
 
-        if (isset($_POST["end_date"]) && strlen($_POST["end_date"]) > 0) {
-            $q = Jobs::filter($q, "end_time", $_POST["end_date"], "<");
+        if (isset($data["end_date"]) && strlen($data["end_date"]) > 0) {
+            $q = Jobs::filter($q, "end_time", $data["end_date"], "<");
         }
 
-        if (isset($_POST["application"]) && strlen($_POST["application"]) > 0) {
-            $q = Jobs::filter($q, "appname", $_POST["application"]);
+        if (isset($data["application"]) && strlen($data["application"]) > 0) {
+            $q = Jobs::filter($q, "appname", $data["application"]);
         }
 
-        if (isset($_POST["numapp"]) && strlen($_POST["numapp"]) > 0) {
-            $q = Jobs::Limit($q, $_POST["numapp"]);
+        if (isset($data["numapp"]) && strlen($data["numapp"]) > 0) {
+            $q = Jobs::Limit($q, $data["numapp"]);
         }
         if (!isset($q["order"])) {
             $orderby = "start_time";
         } else {
             $orderby = $q["order"];
         }
-        if (isset($_POST["sort_level1"]) && strlen($_POST["sort_level1"]) > 0) {
-            $orderby = $_POST["sort_level1"];
+        if (isset($data["sort_level1"]) && strlen($data["sort_level1"]) > 0) {
+            $orderby = $data["sort_level1"];
         }
 
         $mode1 = "desc";
-        if (isset($_POST["mode_level1"])) {
-            $mode1 = $_POST["mode_level1"];
+        if (isset($data["mode_level1"])) {
+            $mode1 = $data["mode_level1"];
         }
 
         $q = Jobs::OrderBy($q, $orderby, $mode1);
         $q = Jobs::Limit($q, 15000);
 
-        if (isset($_POST["sort_level2"]) && strlen($_POST["sort_level2"]) > 0) {
-            $sortlevel2 = $_POST["sort_level2"];
+        if (isset($data["sort_level2"]) && strlen($data["sort_level2"]) > 0) {
+            $sortlevel2 = $data["sort_level2"];
             $mode2 = "desc";
-            if (isset($_POST["mode_level2"])) {
-                $mode1 = $_POST["mode_level2"];
+            if (isset($data["mode_level2"])) {
+                $mode1 = $data["mode_level2"];
             }
             $q = Jobs::addSortingLevel($q, $sortlevel2, $mode2);
         }
 
-        if (isset($_POST["sort_level3"]) && strlen($_POST["sort_level3"]) > 0) {
-            $sortlevel3 = $_POST["sort_level3"];
+        if (isset($data["sort_level3"]) && strlen($data["sort_level3"]) > 0) {
+            $sortlevel3 = $data["sort_level3"];
             $mode3 = "desc";
-            if (isset($_POST["mode_level3"])) {
-                $mode1 = $_POST["mode_level3"];
+            if (isset($data["mode_level3"])) {
+                $mode1 = $data["mode_level3"];
             }
             $q = Jobs::addSortingLevel($q, $sortlevel3, $mode3);
         }
 
-        if (isset($_POST["user"]) && strlen($_POST["user"]) > 0) {
-            $q = Jobs::filter($q, "uid", $_POST["user"]);
+        if (isset($data["user"]) && strlen($data["user"]) > 0) {
+            $q = Jobs::filter($q, "uid", $data["user"]);
         }
 //var_dump($q) ;
         $data = Jobs::execSQLQuery($q);
