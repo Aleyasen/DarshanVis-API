@@ -1,0 +1,46 @@
+2016/04/21 12:34:00 [error] [php] require_once(C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected/views/jobs/utils.php): failed to open stream: No such file or directory (C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php:3)
+Stack trace:
+#0 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CWebApplication.php(277): CWebApplication->createController()
+#1 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#2 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#3 C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\index.php(49): CWebApplication->run()
+REQUEST_URI=/DarshanVis-API/index.php/jobs/filter
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php (3)
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php (3)
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\index.php (49)
+2016/04/21 12:34:52 [error] [php] require_once(C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected/views/jobs/utils.php): failed to open stream: No such file or directory (C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php:3)
+Stack trace:
+#0 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CWebApplication.php(277): CWebApplication->createController()
+#1 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#2 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#3 C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\index.php(49): CWebApplication->run()
+REQUEST_URI=/DarshanVis-API/index.php/jobs/filter
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php (3)
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php (3)
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\index.php (49)
+2016/04/21 13:11:43 [error] [php] require_once(C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected/views/jobs/preprocess.php): failed to open stream: No such file or directory (C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php:4)
+Stack trace:
+#0 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CWebApplication.php(277): CWebApplication->createController()
+#1 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#2 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#3 C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\index.php(49): CWebApplication->run()
+REQUEST_URI=/DarshanVis-API/index.php/jobs/filter
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php (4)
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php (4)
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\index.php (49)
+2016/04/25 14:12:59 [error] [php] Undefined index: url (C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php:38)
+Stack trace:
+#0 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\filters\CFilterChain.php(134): JobsController->runAction()
+#1 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\filters\CInlineFilter.php(59): JobsController->filterAccessControl()
+#4 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CController.php(266): JobsController->runActionWithFilters()
+#7 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CWebApplication.php(283): JobsController->run()
+#8 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Users\Amir\Dropbox (Aale Co.)\workspace\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\index.php(49): CWebApplication->run()
+REQUEST_URI=/DarshanVis-API/index.php/jobs/filter
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\protected\controllers\JobsController.php (38)
+in C:\Users\Amir\Dropbox (Aale Co.)\workspace\DarshanVis-API\index.php (49)
