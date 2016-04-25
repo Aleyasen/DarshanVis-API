@@ -32,7 +32,7 @@ class JobsController extends GxController {
 
         //decode json post input as php array:
         $data = CJSON::decode($post, true);
-        
+
         $result = array();
         $chartId = $data["chart"];
         $url = $data["url"];
@@ -116,6 +116,7 @@ class JobsController extends GxController {
 //        echo json_encode(User::completeTerm($term, $exclude));
 
         header('Content-Type: application/json; charset="UTF-8"');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($result);
         Yii::app()->end();
     }
