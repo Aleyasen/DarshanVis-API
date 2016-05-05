@@ -35,6 +35,7 @@ function getChartInfo($id) {
     }
     $chart = array_replace_recursive($generic_chart, $main_chart);
     //var_dump($chart);
+    // return "hi";
     return $chart;
 }
 

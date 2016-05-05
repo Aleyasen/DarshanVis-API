@@ -117,7 +117,10 @@ class JobsController extends GxController {
 
         header('Content-Type: application/json; charset="UTF-8"');
         header('Access-Control-Allow-Origin: *');
-        echo json_encode($result);
+        // HERE IS WHERE I NEED TO EDIT THE FILE
+        // echo json_encode($result);
+        echo json_encode($queryResult);
+        // echo "hi";
         Yii::app()->end();
     }
 
