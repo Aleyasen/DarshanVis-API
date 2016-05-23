@@ -147,10 +147,12 @@ class JobsController extends GxController {
             }
 
             $json_str = json_encode($all_data);
+
+            $big_data = array("data" => $all_data, "appnames" => $app_names);
             header('Content-Type: application/json; charset="UTF-8"');
             header('Access-Control-Allow-Origin: *');
 
-            echo $json_str;
+            echo json_encode($big_data);
         }
         Yii::app()->end();
     }
