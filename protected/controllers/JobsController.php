@@ -44,83 +44,114 @@ class JobsController extends GxController {
         $result["chart"] = $chart;
         $q = $chart["query"];
 
-        if (isset($data["start_date"]) && strlen($data["start_date"]) > 0) {
-            $q = Jobs::filter($q, "start_time", $data["start_date"], ">");
-        }
+        if ($data["chart"] != "10" && $data["chart"] != "9" && $data["chart"] != "4") {
+            if (isset($data["start_date"]) && strlen($data["start_date"]) > 0) {
+                $q = Jobs::filter($q, "start_time", $data["start_date"], ">");
+            }
 
-        if (isset($data["end_date"]) && strlen($data["end_date"]) > 0) {
-            $q = Jobs::filter($q, "end_time", $data["end_date"], "<");
-        }
+            if (isset($data["end_date"]) && strlen($data["end_date"]) > 0) {
+                $q = Jobs::filter($q, "end_time", $data["end_date"], "<");
+            }
 
-        if (isset($data["application"]) && strlen($data["application"]) > 0) {
-            $q = Jobs::filter($q, "appname", $data["application"]);
-        }
+            if (isset($data["application"]) && strlen($data["application"]) > 0) {
+                $q = Jobs::filter($q, "appname", $data["application"]);
+            }
 
-        if (isset($data["numapp"]) && strlen($data["numapp"]) > 0) {
-            $q = Jobs::Limit($q, $data["numapp"]);
-        }
-        if (!isset($q["order"])) {
+            if (isset($data["numapp"]) && strlen($data["numapp"]) > 0) {
+                $q = Jobs::Limit($q, $data["numapp"]);
+            }
             $orderby = "start_time";
-        } else {
-            $orderby = $q["order"];
-        }
-        if (isset($data["sort_level1"]) && strlen($data["sort_level1"]) > 0) {
-            $orderby = $data["sort_level1"];
-        }
-
-        $mode1 = "desc";
-        if (isset($data["mode_level1"])) {
-            $mode1 = $data["mode_level1"];
-        }
-
-        $q = Jobs::OrderBy($q, $orderby, $mode1);
-        $q = Jobs::Limit($q, 15000);
-
-        if (isset($data["sort_level2"]) && strlen($data["sort_level2"]) > 0) {
-            $sortlevel2 = $data["sort_level2"];
-            $mode2 = "desc";
-            if (isset($data["mode_level2"])) {
-                $mode1 = $data["mode_level2"];
+            if (isset($q["order"])) {
+                $orderby = $q["order"];
             }
-            $q = Jobs::addSortingLevel($q, $sortlevel2, $mode2);
-        }
-
-        if (isset($data["sort_level3"]) && strlen($data["sort_level3"]) > 0) {
-            $sortlevel3 = $data["sort_level3"];
-            $mode3 = "desc";
-            if (isset($data["mode_level3"])) {
-                $mode1 = $data["mode_level3"];
+            if (isset($data["sort_level1"]) && strlen($data["sort_level1"]) > 0) {
+                $orderby = $data["sort_level1"];
             }
-            $q = Jobs::addSortingLevel($q, $sortlevel3, $mode3);
+
+            $mode1 = "desc";
+            if (isset($data["mode_level1"])) {
+                $mode1 = $data["mode_level1"];
+            }
+
+            $q = Jobs::OrderBy($q, $orderby, $mode1);
+            $q = Jobs::Limit($q, 15000);
+
+            if (isset($data["sort_level2"]) && strlen($data["sort_level2"]) > 0) {
+                $sortlevel2 = $data["sort_level2"];
+                $mode2 = "desc";
+                if (isset($data["mode_level2"])) {
+                    $mode1 = $data["mode_level2"];
+                }
+                $q = Jobs::addSortingLevel($q, $sortlevel2, $mode2);
+            }
+
+            if (isset($data["sort_level3"]) && strlen($data["sort_level3"]) > 0) {
+                $sortlevel3 = $data["sort_level3"];
+                $mode3 = "desc";
+                if (isset($data["mode_level3"])) {
+                    $mode1 = $data["mode_level3"];
+                }
+                $q = Jobs::addSortingLevel($q, $sortlevel3, $mode3);
+            }
+
+            if (isset($data["user"]) && strlen($data["user"]) > 0) {
+                $q = Jobs::filter($q, "uid", $data["user"]);
+            }
+            $data = Jobs::execSQLQuery($q);
+
+            $preprocess = $chart["preprocess"];
+            $queryResult = $preprocess($chart, $data);
+            $result["queryresult"] = $queryResult;
+            $result["query"] = $q;
+            
+            header('Content-Type: application/json; charset="UTF-8"');
+            header('Access-Control-Allow-Origin: *');
+
+            echo json_encode($queryResult);
+        } else
+        {
+            $X_AXIS = "total_bytes";
+            $Y_AXIS = "nprocs";
+
+
+            $data = Jobs::execSQLQuery($q);
+            $query = "select uid, appname, start_time, total_bytes, nprocs, agg_perf_MB from jobs_info where total_bytes>0 and nprocs>0 and agg_perf_MB>0";
+
+            $all_data = array();
+            $app_names = "";
+
+            foreach ($data as $d) {
+                $series_str = "";
+                $series1_str = "";
+                $series2_str = "";
+
+                $req = Jobs::execSQLQuery($query . " and appname='" . $d['appname'] . "';");
+                // print_r($req);
+                foreach ($req as $r) {
+                    $series_str .= '[' . $r[$X_AXIS] . ',' . $r[$Y_AXIS] . '],';
+                    $series1_str .= $r[$X_AXIS] . ',';
+                    $series2_str .= $r[$Y_AXIS] . ',';
+                }
+                $series_str = rtrim($series_str, ",");
+                $series1_str = rtrim($series1_str, ",");
+                $series2_str = rtrim($series2_str, ",");
+
+                $s1_label = $d['appname'] . '-' . $X_AXIS;
+                $s2_label = $d['appname'] . '-' . $Y_AXIS;
+
+                $all_data[$s1_label] = $series1_str;
+                $all_data[$s2_label] = $series2_str;
+
+
+                $app_names .= $d['appname'] . ',';
+            }
+
+            $json_str = json_encode($all_data);
+            header('Content-Type: application/json; charset="UTF-8"');
+            header('Access-Control-Allow-Origin: *');
+
+            echo $json_str;
         }
-
-        if (isset($data["user"]) && strlen($data["user"]) > 0) {
-            $q = Jobs::filter($q, "uid", $data["user"]);
-        }
-//var_dump($q) ;
-        $data = Jobs::execSQLQuery($q);
-
-//print_r($data);
-        $preprocess = $chart["preprocess"];
-        $queryResult = $preprocess($chart, $data);
-        $result["queryresult"] = $queryResult;
-        $result["query"] = $q;
-//        $result = array_merge($result, $result2);
-//echo $series_str;
-//        print_r($_GET);
-//        if (empty($_GET['data'])) {
-//            throw new CHttpException('404', 'Missing "data" GET parameter.');
-//        }
-//        $term = $_GET['term'];
-//        $filters = empty($_GET['exclude']) ? null : (int) $_GET['exclude']);
-//        echo json_encode(User::completeTerm($term, $exclude));
-
-        header('Content-Type: application/json; charset="UTF-8"');
-        header('Access-Control-Allow-Origin: *');
-        // HERE IS WHERE I NEED TO EDIT THE FILE
-        // echo json_encode($result);
-        echo json_encode($queryResult);
-        // echo "hi";
         Yii::app()->end();
     }
 
