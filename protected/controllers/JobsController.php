@@ -226,6 +226,7 @@ class JobsController extends GxController {
             $just_apps[] = $value["appname"];
         }
         header('Content-Type: application/json; charset="UTF-8"');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($just_apps);
         Yii::app()->end();
     }
@@ -247,6 +248,7 @@ class JobsController extends GxController {
             $just_users[] = $value["uid"];
         }
         header('Content-Type: application/json; charset="UTF-8"');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($just_users);
         Yii::app()->end();
     }
