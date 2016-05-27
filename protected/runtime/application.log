@@ -1999,3 +1999,53 @@ REQUEST_URI=/DarshanVis-API/index.php/jobs/filter
 in /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/protected/models/Jobs.php (192)
 in /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/protected/controllers/JobsController.php (79)
 in /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/index.php (49)
+2016/05/26 00:08:21 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] Operation timed out' in /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/base/CModule.php(388): CDbConnection->init()
+#3 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/base/CModule.php(104): CModule->getComponent('db')
+#4 /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/protected/models/Jobs.php(99): CModule->__get('db')
+#5 /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/protected/controllers/JobsController.php(100): Jobs::execSQLQuery(Array)
+#6 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/actions/CInlineAction.php(50): JobsController->actionFilter()
+#7 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#8 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#9 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#10 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#11 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#12 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#13 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CController.php(292): CFilterChain->run()
+#14 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CWebApplication.php(283): CController->run('filter')
+#16 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('jobs/filter')
+#17 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/index.php(49): CApplication->run()
+#19 {main}
+REQUEST_URI=/DarshanVis-API/index.php/jobs/filter
+HTTP_REFERER=http://localhost:3000/
+---
+2016/05/26 00:08:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] Operation timed out' in /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/db/CDbConnection.php(331): CDbConnection->open()
+#1 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/db/CDbConnection.php(309): CDbConnection->setActive(true)
+#2 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/base/CModule.php(388): CDbConnection->init()
+#3 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/base/CModule.php(104): CModule->getComponent('db')
+#4 /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/protected/models/Jobs.php(99): CModule->__get('db')
+#5 /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/protected/controllers/JobsController.php(100): Jobs::execSQLQuery(Array)
+#6 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/actions/CInlineAction.php(50): JobsController->actionFilter()
+#7 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#8 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#9 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#10 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#11 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#12 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#13 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CController.php(292): CFilterChain->run()
+#14 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CWebApplication.php(283): CController->run('filter')
+#16 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('jobs/filter')
+#17 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/index.php(49): CApplication->run()
+#19 {main}
+REQUEST_URI=/DarshanVis-API/index.php/jobs/filter
+HTTP_REFERER=http://localhost:3000/
+---
