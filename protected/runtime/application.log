@@ -1999,6 +1999,7 @@ REQUEST_URI=/DarshanVis-API/index.php/jobs/filter
 in /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/protected/models/Jobs.php (192)
 in /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/protected/controllers/JobsController.php (79)
 in /Users/ymostofi/Dropbox/uiuc/winslett-research/DarshanVis-API/index.php (49)
+<<<<<<< HEAD
 2016/05/26 00:08:21 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] Operation timed out' in /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/db/CDbConnection.php:382
 Stack trace:
 #0 /Users/ymostofi/Dropbox/uiuc/winslett-research/yii/framework/db/CDbConnection.php(331): CDbConnection->open()
@@ -2049,3 +2050,44 @@ Stack trace:
 REQUEST_URI=/DarshanVis-API/index.php/jobs/filter
 HTTP_REFERER=http://localhost:3000/
 ---
+=======
+2016/05/25 21:41:24 [error] [exception.CException] exception 'CException' with message 'SiteController cannot find the requested view "index".' in C:\workspace\yii\framework\web\CController.php:879
+Stack trace:
+#0 C:\workspace\yii\framework\web\CController.php(783): CController->renderPartial('index', NULL, true)
+#1 C:\workspace\DarshanVis-API\protected\controllers\SiteController.php(32): CController->render('index')
+#2 C:\workspace\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionIndex()
+#3 C:\workspace\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 C:\workspace\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 C:\workspace\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#6 C:\workspace\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#7 C:\workspace\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\workspace\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\workspace\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 C:\workspace\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\workspace\yii\framework\web\CWebApplication.php(283): CController->run('')
+#12 C:\workspace\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('')
+#13 C:\workspace\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 C:\workspace\DarshanVis-API\index.php(49): CApplication->run()
+#15 {main}
+REQUEST_URI=/DarshanVis-API/
+---
+2016/05/25 21:41:55 [error] [php] array_replace_recursive(): Argument #2 is not an array (C:\workspace\DarshanVis-API\protected\views\jobs\utils.php:36)
+Stack trace:
+#0 C:\workspace\yii\framework\web\actions\CInlineAction.php(50): JobsController->actionFilter()
+#1 C:\workspace\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#2 C:\workspace\yii\framework\web\filters\CFilterChain.php(134): JobsController->runAction()
+#3 C:\workspace\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#4 C:\workspace\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#5 C:\workspace\yii\framework\web\filters\CInlineFilter.php(59): JobsController->filterAccessControl()
+#6 C:\workspace\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#7 C:\workspace\yii\framework\web\CController.php(292): CFilterChain->run()
+#8 C:\workspace\yii\framework\web\CController.php(266): JobsController->runActionWithFilters()
+#9 C:\workspace\yii\framework\web\CWebApplication.php(283): JobsController->run()
+#10 C:\workspace\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#11 C:\workspace\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#12 C:\workspace\DarshanVis-API\index.php(49): CWebApplication->run()
+REQUEST_URI=/DarshanVis-API/index.php/jobs/filter
+in C:\workspace\DarshanVis-API\protected\views\jobs\utils.php (36)
+in C:\workspace\DarshanVis-API\protected\controllers\JobsController.php (42)
+in C:\workspace\DarshanVis-API\index.php (49)
+>>>>>>> fb8cd755dea07479faccb43390b0ad099eca2306
